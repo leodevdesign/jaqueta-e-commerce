@@ -1,0 +1,24 @@
+# OS & Editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*.class
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Blender backups
+*.blend1
+*.blend2
+*.blend@*
+
+# Logs & Playwright test traces
+*.log
+.playwright-mcp/

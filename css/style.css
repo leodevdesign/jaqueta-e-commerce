@@ -1,0 +1,913 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Syncopate:wght@400;700&display=swap');
+
+:root {
+  --bg-pure: #070709;
+  --bg-card: rgba(18, 20, 26, 0.45);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.22);
+  --text-muted: #8e95a5;
+  --text-white: #f8f9fa;
+  --accent-silver: #d1d5db;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ========================================================
+   CUSTOM LUXURY SCROLLBAR (Solar Orange Thumb with Midnight Blue Track)
+   ======================================================== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080e1a; /* Fundo azul meia-noite elegante */
+  border-left: 1px solid rgba(56, 189, 248, 0.2);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ea580c; /* Barra laranja da jaqueta */
+  border-radius: 4px;
+  border: 2px solid #080e1a;
+  box-shadow: 0 0 10px rgba(234, 88, 12, 0.6);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f97316; /* Laranja solar neon no hover */
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.9);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ea580c #080e1a;
+}
+
+
+body {
+  background-color: var(--bg-pure);
+  color: var(--text-white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Luxury Micro Grid Background */
+.luxury-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.luxury-vignette {
+  background: radial-gradient(circle at 50% 45%, rgba(20, 24, 36, 0.25) 0%, rgba(7, 7, 9, 0.95) 75%);
+}
+
+/* Typography Classes */
+.font-brand {
+  font-family: 'Syncopate', sans-serif;
+}
+
+.font-heading {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-mono-luxury {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.12em;
+}
+
+/* Luxury Title Groups */
+.luxury-overline {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.luxury-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.25rem, 2.2vw, 1.85rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.luxury-heading-lg {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* Luxury Technical Spec Sheet */
+.luxury-spec-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.spec-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.spec-label {
+  color: var(--text-muted);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.spec-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border-subtle);
+  min-width: 24px;
+}
+
+.spec-value {
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+/* Subtle luxury bracket marks */
+.luxury-bracket {
+  position: relative;
+  padding: 1.25rem 1.5rem;
+  background: rgba(14, 16, 22, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.35s ease;
+}
+
+.luxury-bracket::before,
+.luxury-bracket::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-color: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+}
+
+.luxury-bracket::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid currentColor;
+  border-left: 1px solid currentColor;
+}
+
+.luxury-bracket::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+}
+
+.luxury-bracket:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(18, 20, 28, 0.55);
+}
+
+/* Luxury Detail Cards (Section 2) */
+.luxury-detail-card {
+  position: relative;
+  padding: 1.5rem;
+  background: rgba(12, 14, 18, 0.40);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-detail-card:hover {
+  border-color: rgba(255, 255, 255, 0.20);
+  background: rgba(16, 18, 24, 0.60);
+  transform: translateX(-4px);
+}
+
+/* Hotspot Callout Pins (Floating over the 3D Jacket in Section 2) */
+.hotspot-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 25;
+  transition: all 0.3s ease;
+}
+
+.hotspot-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #ffffff;
+  position: relative;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.hotspot-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  animation: hotspot-ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes hotspot-ping {
+  0% { transform: scale(0.8); opacity: 0.9; }
+  80%, 100% { transform: scale(2.4); opacity: 0; }
+}
+
+.hotspot-label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  background: rgba(10, 12, 16, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  padding: 0.35rem 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f1f5f9;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.hotspot-pin:hover .hotspot-label {
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(18, 22, 30, 0.95);
+  transform: translateY(-50%) translateX(4px);
+}
+
+/* Luxury Buttons */
+.btn-luxury-action {
+  position: relative;
+  background: #ffffff;
+  color: #070709;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid #ffffff;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+}
+
+.btn-luxury-action:hover {
+  background: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.25);
+}
+
+.btn-luxury-ghost {
+  background: transparent;
+  color: var(--text-white);
+  border: 1px solid var(--border-subtle);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.25rem;
+  transition: all 0.25s ease;
+}
+
+.btn-luxury-ghost:hover {
+  border-color: var(--border-hover);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* 3D Canvas Viewport (Fixed in background across scroll) */
+#canvas3d-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 15;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* ========================================================
+   SECTION 3: COLLECTIONS CARDS (High-End Technical Frame)
+   ======================================================== */
+.luxury-collection-card {
+  position: relative;
+  background: rgba(12, 14, 20, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-collection-card::before,
+.luxury-collection-card::after {
+  content: '';
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  pointer-events: none;
+  transition: all 0.35s ease;
+}
+
+.luxury-collection-card::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.luxury-collection-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.luxury-collection-card:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(16, 19, 28, 0.88);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+}
+
+.luxury-collection-card:hover::before,
+.luxury-collection-card:hover::after {
+  border-color: #ffffff;
+  width: 10px;
+  height: 10px;
+}
+
+/* ========================================================
+   SECTION 4: TECHNOLOGY & EXPLODED MATERIAL ARCHITECTURE
+   ======================================================== */
+.tech-container {
+  position: relative;
+  background-color: var(--bg-pure);
+}
+
+.hud-annotation-card {
+  position: relative;
+  background: rgba(13, 16, 23, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 0.85rem 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  /* Hidden by default: zero opacity, translated down */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(14px) scale(0.95);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.5s,
+              border-color 0.3s ease,
+              background 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.hud-annotation-card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 6px;
+  height: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.hud-annotation-card::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 6px;
+  height: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-right: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Once revealed by hovering on the left, card stays visible permanently */
+.hud-annotation-card.revealed {
+  opacity: 0.88;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* When active (currently hovered on left or card itself) */
+.hud-annotation-card.active,
+.hud-annotation-card.revealed:hover {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.38);
+  background: rgba(18, 22, 34, 0.96);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 24px rgba(56, 189, 248, 0.18);
+}
+
+.tech-layer-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.tech-layer-selector:hover,
+.tech-layer-selector.active {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.tech-layer-selector.active {
+  border-left: 3px solid #38bdf8;
+  padding-left: calc(1rem - 2px);
+}
+
+@keyframes floatIsometric {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.4deg);
+  }
+}
+
+.animate-float-isometric {
+  animation: floatIsometric 6s ease-in-out infinite;
+}
+
+.tech-metric-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.tech-metric-box:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ========================================================
+   SECTION 5: FAQ & SPECIFICATIONS ACCORDION
+   ======================================================== */
+.faq-accordion-item {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(14, 16, 23, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  margin-bottom: 0.85rem;
+  border-radius: 2px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-accordion-item:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(18, 22, 32, 0.7);
+}
+
+.faq-accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.15rem 1.4rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.25s ease;
+}
+
+.faq-accordion-header:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.faq-accordion-chevron {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.faq-accordion-item.open .faq-accordion-chevron {
+  transform: rotate(45deg);
+  color: #38bdf8;
+}
+
+.faq-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 1.4rem;
+  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.35s ease, 
+              padding 0.35s ease;
+}
+
+.faq-accordion-item.open .faq-accordion-content {
+  max-height: 280px;
+  opacity: 1;
+  padding: 0 1.4rem 1.35rem 1.4rem;
+}
+
+.faq-accordion-item.open {
+  border-color: rgba(56, 189, 248, 0.35);
+  background: rgba(16, 20, 30, 0.85);
+  box-shadow: 0 12px 32px -6px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.08);
+}
+
+/* ========================================================
+   CUSTOM LUXURY CURSOR & GLOW EFFECT
+   ======================================================== */
+@media (hover: hover) and (pointer: fine) {
+  body, a, button, input, select, textarea, [role="button"], .color-bullet, .tech-layer-selector, .faq-accordion-header {
+    cursor: none !important;
+  }
+}
+
+.luxury-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  opacity: 0;
+}
+
+.luxury-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              background-color 0.25s ease,
+              box-shadow 0.25s ease,
+              opacity 0.25s ease;
+}
+
+.luxury-cursor-ring.hovered {
+  width: 58px;
+  height: 58px;
+  border-color: #38bdf8;
+  background-color: rgba(56, 189, 248, 0.08);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+}
+
+.luxury-cursor-ring.clicking {
+  width: 24px;
+  height: 24px;
+  border-color: #ea580c;
+  background-color: rgba(234, 88, 12, 0.15);
+  box-shadow: 0 0 16px rgba(234, 88, 12, 0.6);
+}
+
+.luxury-cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.13) 0%, rgba(234, 88, 12, 0.04) 42%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  filter: blur(12px);
+  mix-blend-mode: screen;
+  transition: opacity 0.3s ease, transform 0.15s ease-out;
+  opacity: 0;
+}
+
+/* Hide cursor elements during preloader */
+body:has(#site-preloader:not(.loaded)) .luxury-cursor-dot,
+body:has(#site-preloader:not(.loaded)) .luxury-cursor-ring,
+body:has(#site-preloader:not(.loaded)) .luxury-cursor-glow {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.luxury-cursor-glow.hovered {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.18);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .luxury-cursor-dot,
+  .luxury-cursor-ring,
+  .luxury-cursor-glow {
+    display: none !important;
+  }
+  body, a, button, input, select, textarea {
+    cursor: auto !important;
+  }
+}
+
+/* ========================================================
+   BRAND PRELOADER (Stroke Text -> Left-to-Right Fill)
+   ======================================================== */
+.site-preloader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  background-color: #070709;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.9s;
+}
+
+.site-preloader.loaded {
+  opacity: 0;
+  transform: scale(1.03);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader-backdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(14, 165, 233, 0.09) 0%, rgba(7, 7, 9, 0.95) 65%);
+  pointer-events: none;
+}
+
+.preloader-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+  pointer-events: none;
+}
+
+.preloader-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 820px;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.2rem;
+}
+
+/* Header Monogram */
+.preloader-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  animation: preloaderFadeIn 0.8s ease forwards 0.2s;
+}
+
+.preloader-mono-box {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.03);
+  position: relative;
+}
+
+.preloader-mono-box::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 4px;
+  height: 4px;
+  background: #ea580c;
+  border-radius: 50%;
+}
+
+.preloader-header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.preloader-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: #f1f5f9;
+  font-weight: 600;
+}
+
+.preloader-subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  color: #38bdf8;
+}
+
+/* Typography Container */
+.preloader-brand-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.preloader-text-stroke {
+  font-family: 'Syncopate', 'Space Grotesk', sans-serif;
+  font-size: 84px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  fill: transparent;
+  stroke: rgba(255, 255, 255, 0.7);
+  stroke-width: 1.8px;
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  animation: preloaderStrokeDraw 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.3s;
+}
+
+.preloader-text-fill {
+  font-family: 'Syncopate', 'Space Grotesk', sans-serif;
+  font-size: 84px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  fill: url(#aetherFillGrad);
+  filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.5)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.25));
+}
+
+@keyframes preloaderStrokeDraw {
+  0% {
+    stroke-dashoffset: 800;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes preloaderFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Laser Scan Line riding the wipe boundary */
+.preloader-laser-line {
+  position: absolute;
+  top: 5%;
+  bottom: 5%;
+  left: 0%;
+  width: 2px;
+  background: linear-gradient(180deg, transparent 0%, #38bdf8 30%, #ffffff 50%, #ea580c 70%, transparent 100%);
+  box-shadow: 0 0 14px #38bdf8, 0 0 28px #ea580c;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: opacity 0.2s ease;
+}
+
+/* Telemetry & Progress Track */
+.preloader-footer {
+  width: 100%;
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  opacity: 0;
+  animation: preloaderFadeIn 0.8s ease forwards 0.4s;
+}
+
+.preloader-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  color: #94a3b8;
+}
+
+.preloader-status-msg {
+  color: #cbd5e1;
+}
+
+.preloader-pct {
+  color: #38bdf8;
+  font-weight: 600;
+  min-width: 38px;
+  text-align: right;
+}
+
+.preloader-track {
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.preloader-fill-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8 0%, #ffffff 70%, #ea580c 100%);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
+  transition: width 0.05s linear;
+}
+
+.preloader-specs-strip {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+
+

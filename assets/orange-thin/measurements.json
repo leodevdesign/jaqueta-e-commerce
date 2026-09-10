@@ -1,0 +1,23 @@
+{
+  "method": "approved green aligned thin relief",
+  "front_bbox": [
+    5,
+    68,
+    389,
+    474
+  ],
+  "back_bbox": [
+    0,
+    46,
+    382,
+    439
+  ],
+  "triangles": 51354,
+  "dimensions": [
+    2.160714285714286,
+    0.4382393487771631,
+    2.284183673469388
+  ],
+  "depth_height_ratio": 0.1918581915575697,
+  "color": "orange"
+}

@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AETHER // HAUTE PERFORMANCE JACKET</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="alternate icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/favicon.png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#070709">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="AETHER // HAUTE PERFORMANCE JACKET">
+  <meta name="description" content="Bespoke architectural outerwear engineered with 4-tier micro-strata, aerogel insulation, and bio-responsive titanium telemetry. Limited 2026 Atelier release.">
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aether-atelier.com/">
+  <meta property="og:title" content="AETHER // HAUTE PERFORMANCE JACKET">
+  <meta property="og:description" content="Bespoke architectural outerwear engineered with 4-tier micro-strata, aerogel insulation, and bio-responsive titanium telemetry. Limited 2026 Atelier release.">
+  <meta property="og:image" content="assets/images/og-share-aether.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://aether-atelier.com/">
+  <meta property="twitter:title" content="AETHER // HAUTE PERFORMANCE JACKET">
+  <meta property="twitter:description" content="Bespoke architectural outerwear engineered with 4-tier micro-strata, aerogel insulation, and bio-responsive titanium telemetry. Limited 2026 Atelier release.">
+  <meta property="twitter:image" content="assets/images/og-share-aether.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            luxury: {
+              black: '#070709',
+              dark: '#0e1014',
+              surface: '#14171f',
+              silver: '#e2e8f0',
+              muted: '#8e95a5'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Three.js via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+  <!-- GSAP via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <!-- Custom Luxury Stylesheet -->
+  <link rel="stylesheet" href="css/style.css?v=1.5">
+</head>
+<body class="bg-[#070709] text-slate-100 luxury-grid select-none relative">
+
+  <!-- ========================================================
+       CUSTOM LUXURY CURSOR & GLOW EFFECT
+       ======================================================== -->
+  <div id="luxury-cursor-glow" class="luxury-cursor-glow" aria-hidden="true"></div>
+  <div id="luxury-cursor-ring" class="luxury-cursor-ring" aria-hidden="true"></div>
+  <div id="luxury-cursor-dot" class="luxury-cursor-dot" aria-hidden="true"></div>
+
+  <!-- ========================================================
+       AETHER ATELIER PRELOADER (Stroke Text -> Left-to-Right Fill)
+       ======================================================== -->
+  <div id="site-preloader" class="site-preloader">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-grid"></div>
+    
+    <div class="preloader-content">
+      <!-- Top Atelier Identification -->
+      <div class="preloader-header">
+        <div class="preloader-mono-box">Æ</div>
+        <div class="preloader-header-text">
+          <span class="preloader-title">AETHER ARCHITECTURAL APPAREL</span>
+          <span class="preloader-subtitle">SYSTEM CALIBRATION // 2026 CAPSULE</span>
+        </div>
+      </div>
+
+      <!-- Main Stroke & Fill Typography -->
+      <div class="preloader-brand-wrapper">
+        <svg class="preloader-svg" viewBox="0 0 800 160" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="aetherFillGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="70%" stop-color="#f1f5f9" />
+              <stop offset="100%" stop-color="#e0f2fe" />
+            </linearGradient>
+
+            <clipPath id="aetherWipeClip">
+              <rect id="aetherWipeRect" x="0" y="0" width="0%" height="100%" />
+            </clipPath>
+          </defs>
+
+          <!-- Layer 1: High-Precision Stroke Outline -->
+          <text x="50%" y="68%" text-anchor="middle" class="preloader-text-stroke">
+            AETHER
+          </text>
+
+          <!-- Layer 2: Solid Luminous Fill (Clipped by progressive Left-to-Right rectangle) -->
+          <g clip-path="url(#aetherWipeClip)">
+            <text x="50%" y="68%" text-anchor="middle" class="preloader-text-fill">
+              AETHER
+            </text>
+          </g>
+        </svg>
+
+        <!-- Laser Leading Edge -->
+        <div id="preloader-laser-line" class="preloader-laser-line"></div>
+      </div>
+
+      <!-- Bottom Progress & Telemetry -->
+      <div class="preloader-footer">
+        <div class="preloader-status-bar">
+          <span id="preloader-status-msg" class="preloader-status-msg">SYNTHESIZING TITANIUM MEMBRANE...</span>
+          <span id="preloader-pct" class="preloader-pct">00%</span>
+        </div>
+        <div class="preloader-track">
+          <div id="preloader-fill-bar" class="preloader-fill-bar"></div>
+        </div>
+        <div class="preloader-specs-strip">
+          <span>SPEC_01 // TITANIUM MESH</span>
+          <span>LAT 45.4642° N</span>
+          <span>ISO 811 READY</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Luxury Ambient Vignette -->
+  <div class="fixed inset-0 pointer-events-none luxury-vignette z-0"></div>
+
+  <!-- ========================================================
+       3D WebGL Canvas Layer (Fixed across entire experience)
+       ======================================================== -->
+  <div id="canvas3d-container"></div>
+
+  <!-- ========================================================
+       TOP HEADER (Sticky Luxury Navigation)
+       ======================================================== -->
+  <header id="site-header" class="fixed top-0 left-0 right-0 z-40 w-full px-8 md:px-16 py-5 flex items-center justify-between border-b border-white/[0.06] backdrop-blur-md bg-black/40">
+    
+    <!-- Top Left: High-End Luxury Brand Logo -->
+    <a href="#" class="flex items-center space-x-3.5 group">
+      <div class="w-8 h-8 flex items-center justify-center border border-white/20 group-hover:border-white/60 transition-colors">
+        <span class="font-brand text-[13px] font-bold tracking-tighter text-white">Æ</span>
+      </div>
+      <div>
+        <div class="font-brand font-bold text-sm tracking-[0.35em] text-white uppercase group-hover:text-slate-300 transition-colors">
+          AETHER
+        </div>
+        <div class="text-[8.5px] font-mono-luxury tracking-[0.25em] text-slate-400 uppercase -mt-0.5">
+          ATELIER 2026
+        </div>
+      </div>
+    </a>
+
+    <!-- Top Center: Minimalist Luxury Nav -->
+    <nav class="hidden md:flex items-center space-x-10">
+      <a href="#collections" class="font-mono-luxury text-[11px] tracking-[0.2em] text-white/90 hover:text-white transition-opacity uppercase relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-white/40">
+        COLLECTION
+      </a>
+      <a href="#section-details" class="font-mono-luxury text-[11px] tracking-[0.2em] text-white/60 hover:text-white transition-colors uppercase">
+        ENGINEERING
+      </a>
+      <a href="#technology" class="font-mono-luxury text-[11px] tracking-[0.2em] text-white/60 hover:text-white transition-colors uppercase">
+        INNOVATION
+      </a>
+      <a href="#atelier" class="font-mono-luxury text-[11px] tracking-[0.2em] text-white/60 hover:text-white transition-colors uppercase">
+        ATELIER
+      </a>
+    </nav>
+
+    <!-- Top Right: Bag / Price -->
+    <div class="flex items-center space-x-5">
+      <div class="hidden lg:flex flex-col text-right font-mono-luxury text-[10px] text-slate-400">
+        <span class="text-white font-medium">$450.00 USD</span>
+        <span class="text-slate-400 text-[9px] tracking-widest">EDITION 01/100</span>
+      </div>
+      
+      <button id="btn-cart" class="btn-buy-trigger btn-luxury-ghost flex items-center gap-2.5">
+        <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-white/80"></i>
+        <span>BAG [ <span id="cart-count" class="text-white font-semibold">0</span> ]</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       SECTION 1: HERO (Scale 0.74, Full Edge-to-Edge Footer Bar)
+       ======================================================== -->
+  <section id="hero" class="relative z-10 h-screen flex flex-col justify-between pt-20 pb-0 overflow-hidden">
+    
+    <div class="h-2"></div>
+
+    <!-- Hero Content (Left & Right Editorial Columns with proper padding) -->
+    <div id="hero-content" class="w-full px-8 md:px-16 flex justify-between items-center my-auto pointer-events-none">
+      
+      <!-- LEFT COLUMN -->
+      <div class="hud-left pointer-events-auto max-w-[280px] md:max-w-sm">
+        <div class="luxury-bracket">
+          <span class="luxury-overline">INNOVATION · SERIE 01</span>
+          <h2 class="luxury-heading">
+            ENGINEERED<br>
+            FOR MOTION.<br>
+            <span class="text-slate-400 font-light">BUILT TO ENDURE.</span>
+          </h2>
+        </div>
+
+        <div class="luxury-spec-sheet px-1">
+          <div class="spec-row">
+            <span class="spec-label">WATERPROOF RATING</span>
+            <span class="spec-line"></span>
+            <span class="spec-value">25,000 MM</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">AEROGEL MATRIX</span>
+            <span class="spec-line"></span>
+            <span class="spec-value">V-9 THERMAL</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">TOTAL WEIGHT</span>
+            <span class="spec-line"></span>
+            <span class="spec-value">480G ULTRA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="hud-right pointer-events-auto max-w-[280px] md:max-w-sm text-right">
+        <div class="luxury-bracket ml-auto">
+          <span class="luxury-overline">PERFORMANCE ARCHITECTURE</span>
+          <h2 class="luxury-heading">
+            DESIGNED FOR<br>
+            THE EXTREMES.<br>
+            <span class="text-slate-400 font-light">WEATHER-SHIELD.</span>
+          </h2>
+        </div>
+
+        <div class="luxury-spec-sheet px-1">
+          <div class="spec-row justify-end">
+            <span class="spec-value">-25°C READY</span>
+            <span class="spec-line"></span>
+            <span class="spec-label">THERMAL COMFORT</span>
+          </div>
+          <div class="spec-row justify-end">
+            <span class="spec-value">MAGNETIC V3</span>
+            <span class="spec-line"></span>
+            <span class="spec-label">STORM ZIPPER</span>
+          </div>
+          <div class="spec-row justify-end">
+            <span class="spec-value">RIPSTOP PRO</span>
+            <span class="spec-line"></span>
+            <span class="spec-label">SHELL TEXTURE</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Hero Footer Bar (Full Width, Flush to Viewport Bottom Edge) -->
+    <div id="hero-footer" class="relative z-30 w-full px-8 md:px-16 py-4 border-t border-white/[0.06] backdrop-blur-md bg-black/40 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-3 text-slate-400">
+        <div class="w-1.5 h-1.5 bg-white/60 rounded-full"></div>
+        <div class="font-mono-luxury text-[10px] tracking-[0.2em] uppercase">
+          <span class="text-white font-semibold">EDITION N° 01</span> // 2026 BESPOKE ATELIER
+        </div>
+      </div>
+
+      <div class="font-mono-luxury text-[10.5px] tracking-[0.2em] text-slate-300 uppercase text-center">
+        WEATHER-RESISTANT · THERMAL INSULATION · OVERSIZED FIT · LIMITED RUN
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <button class="btn-buy-trigger btn-luxury-action flex items-center gap-2">
+          <span>PRE-ORDER — $450</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================================================
+       SECTION 2: DETAILS MATTER (Scale 1.2, Pure Jacket Centerpiece)
+       ======================================================== -->
+  <section id="section-details" class="relative z-20 min-h-screen flex flex-col justify-between pt-28 pb-0">
+    
+    <!-- Main Section 2 Content Split (Left: Title & Narrative | Right: Spec Cards) -->
+    <div class="w-full px-8 md:px-14 lg:px-20 flex-1 flex flex-col md:flex-row justify-between items-center gap-12 my-auto">
+      
+      <!-- LEFT: Title, Architectural Statement & Micro Badges -->
+      <div class="max-w-[320px] lg:max-w-[360px] p-6 lg:p-7 bg-black/50 backdrop-blur-md border border-white/[0.08] space-y-4 z-30">
+        
+        <div>
+          <span class="luxury-overline">CHAPTER 02 // MACRO INSPECTION</span>
+          <h2 class="luxury-heading-lg tracking-tight">
+            DETAILS<br>
+            <span class="text-slate-400">MATTER.</span>
+          </h2>
+        </div>
+
+        <p class="text-slate-300 text-xs leading-relaxed font-light">
+          Every baffle, weld, and seam has been calibrated with sub-millimeter precision. From vacuum-deposited iridescent nano-coatings to magnetic storm closures, the garment harmonizes radical atmospheric protection with ethereal weightlessness.
+        </p>
+
+        <!-- Feature Pill Indicators -->
+        <div class="flex flex-wrap gap-1.5 pt-1">
+          <span class="font-mono-luxury text-[8.5px] px-2 py-1 border border-white/10 bg-white/[0.02] text-slate-300 tracking-wider">
+            [ WELDED HYDRO-SEAMS ]
+          </span>
+          <span class="font-mono-luxury text-[8.5px] px-2 py-1 border border-white/10 bg-white/[0.02] text-slate-300 tracking-wider">
+            [ ERGONOMIC PIVOT ]
+          </span>
+          <span class="font-mono-luxury text-[8.5px] px-2 py-1 border border-white/10 bg-white/[0.02] text-slate-300 tracking-wider">
+            [ ZERO THERMAL LOSS ]
+          </span>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Luxury Technical Detail Cards -->
+      <div class="max-w-[320px] lg:max-w-[360px] w-full space-y-3 z-30">
+        
+        <!-- Card 1: Shell Fabric -->
+        <div class="luxury-detail-card group p-4">
+          <div class="flex items-center justify-between text-[9px] font-mono-luxury text-slate-400 mb-1">
+            <span class="text-white font-semibold tracking-widest">01 / VACUUM-DEPOSITED SHELL</span>
+            <span class="text-slate-400">JAPANESE RIPSTOP</span>
+          </div>
+          <p class="text-slate-300 text-[11px] leading-relaxed font-light">
+            Ultra-dense micro-ripstop weave treated with vapor-phase thin film iridescence. Reflects environmental wavelengths while guaranteeing 25,000 mm hydrostatic waterproof performance.
+          </p>
+          <div class="mt-2 pt-2 border-t border-white/[0.06] flex items-center justify-between text-[8.5px] font-mono-luxury text-slate-400">
+            <span>RESISTANCE: 100% WINDPROOF</span>
+            <span class="text-white">BREATHABILITY: 20K G/M²</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Insulation -->
+        <div class="luxury-detail-card group p-4">
+          <div class="flex items-center justify-between text-[9px] font-mono-luxury text-slate-400 mb-1">
+            <span class="text-white font-semibold tracking-widest">02 / AEROGEL MATRIX CORE</span>
+            <span class="text-slate-400">THERMAL V-9</span>
+          </div>
+          <p class="text-slate-300 text-[11px] leading-relaxed font-light">
+            Sub-zero synthetic insulation infused with space-grade aerogel particles. Prevents cold-spot migration across horizontal baffled chambers down to -25°C.
+          </p>
+          <div class="mt-2 pt-2 border-t border-white/[0.06] flex items-center justify-between text-[8.5px] font-mono-luxury text-slate-400">
+            <span>CHAMBERS: 5-TIER ANATOMICAL</span>
+            <span class="text-white">WEIGHT: 480 GRAMS</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Hardware -->
+        <div class="luxury-detail-card group p-4">
+          <div class="flex items-center justify-between text-[9px] font-mono-luxury text-slate-400 mb-1">
+            <span class="text-white font-semibold tracking-widest">03 / MIL-SPEC ALLOY HARDWARE</span>
+            <span class="text-slate-400">STORM SEAL V3</span>
+          </div>
+          <p class="text-slate-300 text-[11px] leading-relaxed font-light">
+            Anodized aeronautical matte alloy sliders, laser-welded zip retainers, and hermetic magnetic weather flaps tested for over 50,000 articulation cycles.
+          </p>
+          <div class="mt-2 pt-2 border-t border-white/[0.06] flex items-center justify-between text-[8.5px] font-mono-luxury text-slate-400">
+            <span>CLOSURE: MAGNETIC V3</span>
+            <span class="text-white">RATING: IPX-7 SUBMERSIBLE</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Section 2 Footer Bar (Full Width) -->
+    <div class="relative z-30 w-full px-8 md:px-16 py-4 border-t border-white/[0.06] backdrop-blur-md bg-black/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-400 font-mono-luxury text-[9.5px] tracking-[0.2em] uppercase">
+      <div>ATELIER PROTOTYPE N° 01 // ARCHIVE 2026</div>
+      <a href="#collections" class="flex items-center gap-2 text-white hover:text-slate-300 transition-colors cursor-pointer">
+        <span>NEXT: 03 // THE 4 COLORWAYS & COLLECTIONS</span>
+        <i data-lucide="arrow-down" class="w-3.5 h-3.5 animate-bounce"></i>
+      </a>
+    </div>
+
+  </section>
+
+  <!-- ========================================================
+       SECTION 3: COLLECTIONS (The 4 Colorways & Atelier Catalog)
+       ======================================================== -->
+  <section id="collections" class="relative z-30 min-h-screen w-full bg-[#070709] border-t border-white/[0.08] px-8 md:px-14 lg:px-16 pt-24 pb-8 flex flex-col justify-between">
+    
+    <!-- Top Header of Section 3: Title & Haute Descriptor -->
+    <div class="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-white/[0.06]">
+      <div>
+        <div class="flex items-center gap-2.5 text-slate-400 mb-1.5">
+          <span class="w-1.5 h-1.5 bg-white rounded-full"></span>
+          <span class="font-mono-luxury text-[9.5px] tracking-[0.3em] uppercase">CHAPTER 03 // BESPOKE EDITIONS</span>
+        </div>
+        <h2 class="font-brand font-bold text-3xl md:text-4xl lg:text-5xl tracking-tight text-white uppercase">
+          COLLECTIONS<span class="text-white/40">.</span>
+        </h2>
+      </div>
+
+      <div class="text-left md:text-right font-mono-luxury text-[9.5px] text-slate-400 tracking-[0.16em] uppercase max-w-md space-y-1">
+        <p class="text-slate-200 font-medium">HAUTE PERFORMANCE ARCHITECTURE // 2026 CAPSULE</p>
+        <p class="text-slate-500 text-[9px]">LIMITED PRODUCTION RUN OF 100 UNITS EACH · INDIVIDUALLY SERIALIZED</p>
+        <div class="flex md:justify-end gap-2.5 pt-0.5 text-[8.5px] text-slate-400">
+          <span>[ JAPANESE RIPSTOP ]</span>
+          <span>[ THERMAL V-9 ]</span>
+          <span>[ 4 COLORWAYS ]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 Product Cards Grid -->
+    <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 py-4 my-auto">
+      
+      <!-- CARD 01: ACID LIME -->
+      <div class="luxury-collection-card group p-4 sm:p-5 flex flex-col justify-between">
+        <!-- Top Row -->
+        <div class="flex items-center justify-between font-mono-luxury">
+          <span class="text-xs text-slate-400 group-hover:text-white transition-colors tracking-widest font-semibold">01</span>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-lime-400 shadow-[0_0_8px_rgba(163,230,53,0.8)]"></span>
+            <span class="text-sm font-bold text-white tracking-wider">$450</span>
+          </div>
+        </div>
+
+        <!-- Title & Series -->
+        <div class="mt-2">
+          <h3 class="font-heading font-bold text-sm sm:text-base text-white tracking-tight uppercase group-hover:text-lime-300 transition-colors">
+            SHADOW PUFFER
+          </h3>
+          <div class="font-mono-luxury text-[8.5px] text-lime-400 tracking-[0.2em] uppercase mt-0.5">
+            ACID LIME // EDITION 01
+          </div>
+        </div>
+
+        <!-- Product Image Showcase (True 3D Interactive Turntable) -->
+        <div class="card-3d-container relative w-full aspect-square max-h-[190px] mx-auto my-3 flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing select-none" data-model="assets/green-refined/jacket_green_thin.glb" data-preserve-materials="true" data-studio="photographic" data-light="#a3e635">
+          <div class="absolute inset-0 bg-lime-500/10 rounded-full blur-2xl group-hover:bg-lime-500/25 transition-all duration-700 pointer-events-none"></div>
+          <div class="absolute top-2 right-2 z-20 font-mono-luxury text-[7px] text-white/70 bg-black/70 backdrop-blur-md px-1.5 py-0.5 border border-white/10 tracking-widest pointer-events-none flex items-center gap-1 rounded-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-lime-400 animate-pulse"></span>
+            <span>360° 3D</span>
+          </div>
+          <img src="assets/images/jacket_var_lime.webp" alt="AETHER Shadow Puffer - Acid Lime" class="card-placeholder-img w-full h-full object-contain relative z-10 transition-opacity duration-700 pointer-events-none drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]">
+        </div>
+
+        <!-- Spec Highlights -->
+        <div class="space-y-1 py-2 border-y border-white/[0.06] text-[9px] font-mono-luxury">
+          <div class="flex justify-between text-slate-400">
+            <span>WATERPROOF</span>
+            <span class="text-white font-medium">25,000 MM</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>INSULATION</span>
+            <span class="text-white font-medium">AEROGEL V-9</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>CHAMBERS</span>
+            <span class="text-white font-medium">5-TIER BAFFLED</span>
+          </div>
+        </div>
+
+        <!-- Quick Tags -->
+        <div class="flex gap-1 my-2">
+          <span class="font-mono-luxury text-[7.5px] px-1.5 py-0.5 border border-white/10 bg-white/[0.02] text-slate-400 tracking-wider">
+            OVERSIZED FIT
+          </span>
+          <span class="font-mono-luxury text-[7.5px] px-1.5 py-0.5 border border-white/10 bg-white/[0.02] text-slate-400 tracking-wider">
+            LIMITED RUN
+          </span>
+        </div>
+
+        <!-- Action Button -->
+        <button class="btn-buy-trigger w-full py-2 px-3 bg-white/[0.05] hover:bg-white text-slate-200 hover:text-black border border-white/15 hover:border-white transition-all duration-300 font-mono-luxury text-[9px] tracking-[0.18em] uppercase font-semibold flex items-center justify-center gap-1.5">
+          <span>PRE-ORDER — $450</span>
+          <i data-lucide="shopping-bag" class="w-3 h-3"></i>
+        </button>
+      </div>
+
+      <!-- CARD 02: NEO MAGENTA -->
+      <div class="luxury-collection-card group p-4 sm:p-5 flex flex-col justify-between">
+        <!-- Top Row -->
+        <div class="flex items-center justify-between font-mono-luxury">
+          <span class="text-xs text-slate-400 group-hover:text-white transition-colors tracking-widest font-semibold">02</span>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-pink-500 shadow-[0_0_8px_rgba(236,72,153,0.8)]"></span>
+            <span class="text-sm font-bold text-white tracking-wider">$385</span>
+          </div>
+        </div>
+
+        <!-- Title & Series -->
+        <div class="mt-2">
+          <h3 class="font-heading font-bold text-sm sm:text-base text-white tracking-tight uppercase group-hover:text-pink-300 transition-colors">
+            TACTICAL HOODED
+          </h3>
+          <div class="font-mono-luxury text-[8.5px] text-pink-400 tracking-[0.2em] uppercase mt-0.5">
+            NEO MAGENTA // EDITION 02
+          </div>
+        </div>
+
+        <!-- Product Image Showcase (True 3D Interactive Turntable) -->
+        <div class="card-3d-container relative w-full aspect-square max-h-[190px] mx-auto my-3 flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing select-none" data-model="assets/pink-thin/jacket_pink_thin.glb" data-preserve-materials="true" data-studio="photographic" data-light="#ec4899">
+          <div class="absolute inset-0 bg-pink-500/10 rounded-full blur-2xl group-hover:bg-pink-500/25 transition-all duration-700 pointer-events-none"></div>
+          <div class="absolute top-2 right-2 z-20 font-mono-luxury text-[7px] text-white/70 bg-black/70 backdrop-blur-md px-1.5 py-0.5 border border-white/10 tracking-widest pointer-events-none flex items-center gap-1 rounded-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-pink-400 animate-pulse"></span>
+            <span>360° 3D</span>
+          </div>
+          <img src="assets/images/jacket_var_pink.webp" alt="AETHER Tactical Hooded - Neo Magenta" class="card-placeholder-img w-full h-full object-contain relative z-10 transition-opacity duration-700 pointer-events-none drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]">
+        </div>
+
+        <!-- Spec Highlights -->
+        <div class="space-y-1 py-2 border-y border-white/[0.06] text-[9px] font-mono-luxury">
+          <div class="flex justify-between text-slate-400">
+            <span>WATERPROOF</span>
+            <span class="text-white font-medium">20,000 MM</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>INSULATION</span>
+            <span class="text-white font-medium">AEROGEL CORE</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>STORM HOOD</span>
+            <span class="text-white font-medium">RETRACTABLE</span>
+          </div>
+        </div>
+
+        <!-- Quick Tags -->
+        <div class="flex gap-1 my-2">
+          <span class="font-mono-luxury text-[7.5px] px-1.5 py-0.5 border border-white/10 bg-white/[0.02] text-slate-400 tracking-wider">
+            ANATOMIC FIT
+          </span>
+          <span class="font-mono-luxury text-[7.5px] px-1.5 py-0.5 border border-white/10 bg-white/[0.02] text-slate-400 tracking-wider">
+            WEATHER-GUARD
+          </span>
+        </div>
+
+        <!-- Action Button -->
+        <button class="btn-buy-trigger w-full py-2 px-3 bg-white/[0.05] hover:bg-white text-slate-200 hover:text-black border border-white/15 hover:border-white transition-all duration-300 font-mono-luxury text-[9px] tracking-[0.18em] uppercase font-semibold flex items-center justify-center gap-1.5">
+          <span>PRE-ORDER — $385</span>
+          <i data-lucide="shopping-bag" class="w-3 h-3"></i>
+        </button>
+      </div>
+
+      <!-- CARD 03: SOLAR ORANGE -->
+      <div class="luxury-collection-card group p-4 sm:p-5 flex flex-col justify-between">
+        <!-- Top Row -->
+        <div class="flex items-center justify-between font-mono-luxury">
+          <span class="text-xs text-slate-400 group-hover:text-white transition-colors tracking-widest font-semibold">03</span>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.8)]"></span>
+            <span class="text-sm font-bold text-white tracking-wider">$420</span>
+          </div>
+        </div>
+
+        <!-- Title & Series -->
+        <div class="mt-2">
+          <h3 class="font-heading font-bold text-sm sm:text-base text-white tracking-tight uppercase group-hover:text-orange-300 transition-colors">
+            THERMAL BOMBER
+          </h3>
+          <div class="font-mono-luxury text-[8.5px] text-orange-400 tracking-[0.2em] uppercase mt-0.5">
+            SOLAR ORANGE // EDITION 03
+          </div>
+        </div>
+
+        <!-- Product Image Showcase (True 3D Interactive Turntable) -->
+        <div class="card-3d-container relative w-full aspect-square max-h-[190px] mx-auto my-3 flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing select-none" data-model="assets/orange-thin/jacket_orange_thin.glb" data-preserve-materials="true" data-light="#f97316" data-studio="photographic">
+          <div class="absolute inset-0 bg-orange-500/10 rounded-full blur-2xl group-hover:bg-orange-500/25 transition-all duration-700 pointer-events-none"></div>
+          <div class="absolute top-2 right-2 z-20 font-mono-luxury text-[7px] text-white/70 bg-black/70 backdrop-blur-md px-1.5 py-0.5 border border-white/10 tracking-widest pointer-events-none flex items-center gap-1 rounded-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
+            <span>360° 3D</span>
+          </div>
+          <img src="assets/images/jacket_var_orange.webp" alt="AETHER Thermal Bomber - Solar Orange" class="card-placeholder-img w-full h-full object-contain relative z-10 transition-opacity duration-700 pointer-events-none drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]">
+        </div>
+
+        <!-- Spec Highlights -->
+        <div class="space-y-1 py-2 border-y border-white/[0.06] text-[9px] font-mono-luxury">
+          <div class="flex justify-between text-slate-400">
+            <span>WATERPROOF</span>
+            <span class="text-white font-medium">22,000 MM</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>COMFORT</span>
+            <span class="text-white font-medium">-25°C ARCTIC</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>CLOSURE</span>
+            <span class="text-white font-medium">MAGNETIC V3</span>
+          </div>
+        </div>
+
+        <!-- Quick Tags -->
+        <div class="flex gap-1 my-2">
+          <span class="font-mono-luxury text-[7.5px] px-1.5 py-0.5 border border-white/10 bg-white/[0.02] text-slate-400 tracking-wider">
+            HIGH VISIBILITY
+          </span>
+          <span class="font-mono-luxury text-[7.5px] px-1.5 py-0.5 border border-white/10 bg-white/[0.02] text-slate-400 tracking-wider">
+            BOMBER FIT
+          </span>
+        </div>
+
+        <!-- Action Button -->
+        <button class="btn-buy-trigger w-full py-2 px-3 bg-white/[0.05] hover:bg-white text-slate-200 hover:text-black border border-white/15 hover:border-white transition-all duration-300 font-mono-luxury text-[9px] tracking-[0.18em] uppercase font-semibold flex items-center justify-center gap-1.5">
+          <span>PRE-ORDER — $420</span>
+          <i data-lucide="shopping-bag" class="w-3 h-3"></i>
+        </button>
+      </div>
+
+      <!-- CARD 04: CYBER COBALT -->
+      <div class="luxury-collection-card group p-4 sm:p-5 flex flex-col justify-between">
+        <!-- Top Row -->
+        <div class="flex items-center justify-between font-mono-luxury">
+          <span class="text-xs text-slate-400 group-hover:text-white transition-colors tracking-widest font-semibold">04</span>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></span>
+            <span class="text-sm font-bold text-white tracking-wider">$390</span>
+          </div>
+        </div>
+
+        <!-- Title & Series -->
+        <div class="mt-2">
+          <h3 class="font-heading font-bold text-sm sm:text-base text-white tracking-tight uppercase group-hover:text-sky-300 transition-colors">
+            TECH SHELL JACKET
+          </h3>
+          <div class="font-mono-luxury text-[8.5px] text-sky-400 tracking-[0.2em] uppercase mt-0.5">
+            COBALT BLUE // EDITION 04
+          </div>
+        </div>
+
+        <!-- Product Image Showcase (True 3D Interactive Turntable) -->
+        <div class="card-3d-container relative w-full aspect-square max-h-[190px] mx-auto my-3 flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing select-none" data-model="assets/blue-thin/jacket_blue_thin.glb" data-preserve-materials="true" data-studio="photographic" data-light="#3b82f6">
+          <div class="absolute inset-0 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/25 transition-all duration-700 pointer-events-none"></div>
+          <div class="absolute top-2 right-2 z-20 font-mono-luxury text-[7px] text-white/70 bg-black/70 backdrop-blur-md px-1.5 py-0.5 border border-white/10 tracking-widest pointer-events-none flex items-center gap-1 rounded-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+            <span>360° 3D</span>
+          </div>
+          <img src="assets/images/jacket_var_blue.webp" alt="AETHER Tech Shell - Cobalt Blue" class="card-placeholder-img w-full h-full object-contain relative z-10 transition-opacity duration-700 pointer-events-none drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]">
+        </div>
+
+        <!-- Spec Highlights -->
+        <div class="space-y-1 py-2 border-y border-white/[0.06] text-[9px] font-mono-luxury">
+          <div class="flex justify-between text-slate-400">
+            <span>WATERPROOF</span>
+            <span class="text-white font-medium">28,000 MM</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>TOTAL WEIGHT</span>
+            <span class="text-white font-medium">480G ULTRA</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>SHELL</span>
+            <span class="text-white font-medium">RIPSTOP PRO</span>
+          </div>
+        </div>
+
+        <!-- Quick Tags -->
+        <div class="flex gap-1 my-2">
+          <span class="font-mono-luxury text-[7.5px] px-1.5 py-0.5 border border-white/10 bg-white/[0.02] text-slate-400 tracking-wider">
+            WATER-SHIELD
+          </span>
+          <span class="font-mono-luxury text-[7.5px] px-1.5 py-0.5 border border-white/10 bg-white/[0.02] text-slate-400 tracking-wider">
+            ATELIER CUT
+          </span>
+        </div>
+
+        <!-- Action Button -->
+        <button class="btn-buy-trigger w-full py-2 px-3 bg-white/[0.05] hover:bg-white text-slate-200 hover:text-black border border-white/15 hover:border-white transition-all duration-300 font-mono-luxury text-[9px] tracking-[0.18em] uppercase font-semibold flex items-center justify-center gap-1.5">
+          <span>PRE-ORDER — $390</span>
+          <i data-lucide="shopping-bag" class="w-3 h-3"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Section 3 Footer CTA & Meta Bar -->
+    <div class="w-full pt-4 flex flex-col items-center gap-5">
+      <button class="btn-luxury-action px-7 py-2.5 text-[11px] tracking-[0.22em] flex items-center gap-2.5">
+        <span>VIEW ALL ATELIER EDITIONS</span>
+        <i data-lucide="arrow-down" class="w-3 h-3"></i>
+      </button>
+
+      <div class="w-full pt-4 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 font-mono-luxury text-[9px] text-slate-400 tracking-[0.18em] uppercase">
+        <div>EDITION SPECIFICATION // 4 COLOR MATRIX · 100 UNITS PER PIECE</div>
+        <a href="#technology" class="flex items-center gap-2 text-white hover:text-slate-300 transition-colors cursor-pointer">
+          <span>NEXT: 04 // ENGINEERING & EXPLODED LAYERS</span>
+          <i data-lucide="arrow-down" class="w-3.5 h-3.5 animate-bounce"></i>
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================================================
+       SECTION 4: TECHNOLOGY (Exploded Material Architecture)
+       ======================================================== -->
+  <section id="technology" class="relative z-30 min-h-screen w-full bg-[#070709] border-t border-white/[0.08] px-8 md:px-14 lg:px-16 pt-24 pb-8 flex flex-col justify-between">
+    
+    <!-- Top Header of Section 4: Title & Haute Descriptor -->
+    <div class="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-white/[0.06]">
+      <div>
+        <div class="flex items-center gap-2.5 text-slate-400 mb-1.5">
+          <span class="w-1.5 h-1.5 bg-sky-400 rounded-full animate-pulse"></span>
+          <span class="font-mono-luxury text-[9.5px] tracking-[0.3em] uppercase">CHAPTER 04 // MATERIAL ARCHITECTURE</span>
+        </div>
+        <h2 class="font-brand font-bold text-3xl md:text-5xl lg:text-6xl tracking-tight text-white uppercase leading-[1.06]">
+          TECHNOLOGY<br>
+          ENGINEERED<br>
+          TO ENDURE<span class="text-white/40">.</span>
+        </h2>
+      </div>
+
+      <div class="text-left md:text-right font-mono-luxury text-[9.5px] text-slate-400 tracking-[0.16em] uppercase max-w-md space-y-1">
+        <p class="text-slate-200 font-medium">4-TIER COMPOSITE LAMINATION // AEROGEL MATRIX</p>
+        <p class="text-slate-500 text-[9px]">HYDROSTATIC TEST RATING 28,000 MM · ZERO COMPROMISE</p>
+        <div class="flex md:justify-end gap-2.5 pt-0.5 text-[8.5px] text-slate-400">
+          <span>[ RIPSTOP DWR ]</span>
+          <span>[ POROUS FILM ]</span>
+          <span>[ THERMAL CORE ]</span>
+          <span>[ RADIANT FOIL ]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Split Grid (Narrative & Interactive Callouts) -->
+    <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-center py-6 my-auto">
+      
+      <!-- Left Column (5 Cols): Technical Thesis & Interactive Layer Matrix -->
+      <div class="md:col-span-5 flex flex-col justify-between space-y-5">
+        
+        <!-- Philosophical Quote Callout (Direct from reference) -->
+        <div class="relative p-4 sm:p-5 border-l-2 border-white/20 bg-white/[0.015] backdrop-blur-sm">
+          <div class="font-mono-luxury text-[8.5px] tracking-[0.25em] text-sky-400 uppercase mb-1.5">
+            DESIGN THESIS // SPEC 04
+          </div>
+          <p class="font-mono-luxury text-xs sm:text-[12px] text-slate-200 leading-relaxed uppercase tracking-wider">
+            "EVERY DETAIL HAS A PURPOSE. FROM THE PROTECTIVE OUTER SHELL TO THE INSULATION INSIDE, THE JACKET IS DESIGNED TO PERFORM WITHOUT COMPROMISING ITS FORM."
+          </p>
+        </div>
+
+        <!-- Interactive Layer Selector Matrix -->
+        <div class="space-y-1.5">
+          <div class="text-[9px] font-mono-luxury text-slate-400 tracking-[0.2em] uppercase flex items-center justify-between mb-1">
+            <span>EXPLODED STRATA SELECTOR</span>
+            <span class="text-slate-500">[ HOVER / CLICK TO ISOLATE ]</span>
+          </div>
+
+          <!-- Layer 1 -->
+          <div class="tech-layer-selector" data-layer-target="1">
+            <div class="flex items-center gap-2.5">
+              <span class="text-sky-400 font-bold">01</span>
+              <div>
+                <span class="text-white block font-medium">OUTER DWR RIPSTOP SHELL</span>
+                <span class="text-[7.5px] text-slate-500 block">JAPANESE MICRO-WEAVE // HYDROPHOBIC VAPOR DEPOSIT</span>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-500"></i>
+          </div>
+
+          <!-- Layer 2 -->
+          <div class="tech-layer-selector" data-layer-target="2">
+            <div class="flex items-center gap-2.5">
+              <span class="text-white font-bold">02</span>
+              <div>
+                <span class="text-white block font-medium">RESPIRATORY MICRO-POROUS FILM</span>
+                <span class="text-[7.5px] text-slate-500 block">SUB-MICRON MEMBRANE // DYNAMIC VAPOR FLUX</span>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-500"></i>
+          </div>
+
+          <!-- Layer 3 -->
+          <div class="tech-layer-selector" data-layer-target="3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-purple-400 font-bold">03</span>
+              <div>
+                <span class="text-white block font-medium">AEROGEL MATRIX V-9 INSULATION</span>
+                <span class="text-[7.5px] text-slate-500 block">SPACE-GRADE THERMAL BAFFLES // -25°C ARCTIC</span>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-500"></i>
+          </div>
+
+          <!-- Layer 4 -->
+          <div class="tech-layer-selector" data-layer-target="4">
+            <div class="flex items-center gap-2.5">
+              <span class="text-slate-300 font-bold">04</span>
+              <div>
+                <span class="text-white block font-medium">THERMOREFLECTIVE RADIANT FOIL</span>
+                <span class="text-[7.5px] text-slate-500 block">TITANIUM-INFUSED LINING // 85% HEAT REFLECTION</span>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-500"></i>
+          </div>
+        </div>
+
+        <!-- 4-Tile Telemetry Metric Matrix -->
+        <div class="grid grid-cols-2 gap-2 pt-1 font-mono-luxury">
+          <div class="tech-metric-box">
+            <div class="text-[7.5px] text-slate-400 uppercase tracking-widest">HYDROSTATIC HEAD</div>
+            <div class="text-sm sm:text-base font-bold text-white mt-0.5">28,000 MM</div>
+            <div class="text-[7px] text-sky-400 mt-0.5">ISO 811 CERTIFIED</div>
+          </div>
+          <div class="tech-metric-box">
+            <div class="text-[7.5px] text-slate-400 uppercase tracking-widest">BREATHABILITY</div>
+            <div class="text-sm sm:text-base font-bold text-white mt-0.5">20,000 G/M²</div>
+            <div class="text-[7px] text-emerald-400 mt-0.5">JIS L 1099 B-1</div>
+          </div>
+          <div class="tech-metric-box">
+            <div class="text-[7.5px] text-slate-400 uppercase tracking-widest">THERMAL EFFICIENCY</div>
+            <div class="text-sm sm:text-base font-bold text-white mt-0.5">0.94 CLO/OZ</div>
+            <div class="text-[7px] text-purple-400 mt-0.5">AEROGEL MATRIX</div>
+          </div>
+          <div class="tech-metric-box">
+            <div class="text-[7.5px] text-slate-400 uppercase tracking-widest">TENSILE STRENGTH</div>
+            <div class="text-sm sm:text-base font-bold text-white mt-0.5">450 N WEFT</div>
+            <div class="text-[7px] text-slate-400 mt-0.5">RIPSTOP BALLISTIC</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column (7 Cols): Exploded 3D Visual & Interactive HUD Annotation Cards -->
+      <div class="md:col-span-7 relative flex items-center justify-center min-h-[460px] md:min-h-[520px]">
+        
+        <!-- Ambient Radial Colored Backdrop Glow -->
+        <div class="absolute inset-0 bg-radial from-blue-600/15 via-purple-600/5 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Background HUD Crosshairs & Grid Accents -->
+        <div class="absolute inset-2 sm:inset-4 pointer-events-none border border-white/[0.04] flex flex-col justify-between p-3">
+          <div class="flex justify-between font-mono-luxury text-[7.5px] text-slate-600">
+            <span>+ 45.384° N</span>
+            <span>SPEC_04 // LAYER_STACK</span>
+            <span>+ 14.120° E</span>
+          </div>
+          <div class="flex justify-between font-mono-luxury text-[7.5px] text-slate-600">
+            <span>SCALE: 1:1 DISSECTION</span>
+            <span>OCTANE_PBR_V9</span>
+          </div>
+        </div>
+
+        <!-- Central Exploded 3D Image Artwork -->
+        <div class="relative z-10 w-full max-w-[460px] lg:max-w-[500px] aspect-square flex items-center justify-center animate-float-isometric">
+          <img src="assets/images/technology-exploded-layers.webp" alt="AETHER Exploded Material Layers" class="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)] select-none">
+        </div>
+
+        <!-- Floating HUD Annotation Cards overlaying the layers -->
+        
+        <!-- Callout 1 (Top Layer: Ripstop Shell) -->
+        <div id="hud-card-1" class="hud-annotation-card absolute top-2 right-0 sm:right-4 z-20 max-w-[210px] sm:max-w-[240px]">
+          <div class="flex items-center justify-between text-[8px] font-mono-luxury text-sky-400 mb-0.5">
+            <span class="tracking-widest font-semibold">01 // OUTER SHELL</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shadow-[0_0_6px_rgba(56,189,248,0.8)]"></span>
+          </div>
+          <div class="text-[10.5px] font-bold text-white uppercase tracking-wider font-heading">
+            DWR RIPSTOP SHELL
+          </div>
+          <p class="text-[8.5px] text-slate-400 mt-1 leading-relaxed font-mono-luxury">
+            Vapor-phase hydrophobic micro-grid weave. High surface tension beads water instantly.
+          </p>
+        </div>
+
+        <!-- Callout 2 (Second Layer: Breathable Membrane) -->
+        <div id="hud-card-2" class="hud-annotation-card absolute top-28 sm:top-32 left-0 sm:left-2 z-20 max-w-[210px] sm:max-w-[240px]">
+          <div class="flex items-center justify-between text-[8px] font-mono-luxury text-slate-300 mb-0.5">
+            <span class="tracking-widest font-semibold">02 // MEMBRANE</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)]"></span>
+          </div>
+          <div class="text-[10.5px] font-bold text-white uppercase tracking-wider font-heading">
+            MICRO-POROUS FILM
+          </div>
+          <p class="text-[8.5px] text-slate-400 mt-1 leading-relaxed font-mono-luxury">
+            Sub-micron pores block exterior liquid droplets while allowing interior moisture vapor escape.
+          </p>
+        </div>
+
+        <!-- Callout 3 (Third Layer: Aerogel Core) -->
+        <div id="hud-card-3" class="hud-annotation-card absolute bottom-28 sm:bottom-32 right-0 sm:right-2 z-20 max-w-[210px] sm:max-w-[240px]">
+          <div class="flex items-center justify-between text-[8px] font-mono-luxury text-purple-400 mb-0.5">
+            <span class="tracking-widest font-semibold">03 // INSULATION</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-purple-400 shadow-[0_0_6px_rgba(168,85,247,0.8)]"></span>
+          </div>
+          <div class="text-[10.5px] font-bold text-white uppercase tracking-wider font-heading">
+            AEROGEL MATRIX V-9
+          </div>
+          <p class="text-[8.5px] text-slate-400 mt-1 leading-relaxed font-mono-luxury">
+            Infused synthetic chambers prevent cold bridge migration across baffled chambers down to -25°C.
+          </p>
+        </div>
+
+        <!-- Callout 4 (Bottom Layer: Radiant Foil) -->
+        <div id="hud-card-4" class="hud-annotation-card absolute bottom-2 left-0 sm:left-4 z-20 max-w-[210px] sm:max-w-[240px]">
+          <div class="flex items-center justify-between text-[8px] font-mono-luxury text-slate-400 mb-0.5">
+            <span class="tracking-widest font-semibold">04 // RADIANT LINING</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-300 shadow-[0_0_6px_rgba(203,213,225,0.8)]"></span>
+          </div>
+          <div class="text-[10.5px] font-bold text-white uppercase tracking-wider font-heading">
+            THERMOREFLECTIVE FOIL
+          </div>
+          <p class="text-[8.5px] text-slate-400 mt-1 leading-relaxed font-mono-luxury">
+            Micro-deposited titanium matrix reflects 85% of radiated body heat back inward.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Section 4 Footer Bar (Full Width) -->
+    <div class="w-full pt-4 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 font-mono-luxury text-[9px] text-slate-400 tracking-[0.18em] uppercase">
+      <div>MATERIAL ARCHITECTURE // 4-TIER COMPOSITE LAMINATION · RIGOROUSLY BENCHMARKED</div>
+      <a href="#faq-specs" class="flex items-center gap-2 text-white hover:text-slate-300 transition-colors cursor-pointer">
+        <span>NEXT: 05 // SPECIFICATIONS & ATELIER ARCHIVE</span>
+        <i data-lucide="arrow-down" class="w-3.5 h-3.5 animate-bounce"></i>
+      </a>
+    </div>
+
+  </section>
+
+  <!-- ========================================================
+       SECTION 5: ALL YOU NEED TO KNOW (FAQ & Atelier Specs)
+       ======================================================== -->
+  <section id="faq-specs" class="relative z-10 w-full min-h-screen px-6 sm:px-12 md:px-16 pt-24 pb-16 flex flex-col justify-between border-t border-white/[0.06]">
+    
+    <!-- Ambient Vignette & Crosshairs -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-10 left-12 w-4 h-4 border-t border-l border-white/20"></div>
+      <div class="absolute top-10 right-12 w-4 h-4 border-t border-r border-white/20"></div>
+      <div class="absolute bottom-10 left-12 w-4 h-4 border-b border-l border-white/20"></div>
+      <div class="absolute bottom-10 right-12 w-4 h-4 border-b border-r border-white/20"></div>
+    </div>
+
+    <!-- Main Grid Layout (5 Cols Left: Title + 3D Jacket Anchor / 7 Cols Right: Specs Accordion) -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-14 items-start w-full my-auto">
+      
+      <!-- Left Column (5 Cols): Editorial Display Title & 3D Jacket Space -->
+      <div class="md:col-span-5 flex flex-col justify-between min-h-[520px]">
+        <div>
+          <div class="luxury-overline mb-2">CHAPTER 05 // ATELIER ARCHIVE & SPECS</div>
+          <h2 class="luxury-heading-lg tracking-tight font-black uppercase mb-4 leading-[0.95]">
+            ALL YOU NEED<br>
+            TO KNOW<span class="inline-block w-3 h-3 bg-white ml-2 align-baseline"></span>
+          </h2>
+          <div class="font-mono-luxury text-[8px] text-slate-400 space-y-1 border-l border-white/20 pl-3 mb-6">
+            <p>SPEC_05 // BESPOKE ARCHIVE SPECIFICATIONS</p>
+            <p>CORD: 45.384° N · 14.120° E // ZERO-COMPROMISE APPAREL</p>
+          </div>
+        </div>
+
+        <!-- 3D Jacket Anchor Stage (Jacket docks dynamically into this frame) -->
+        <div id="jacket-sec5-stage" class="relative w-full max-w-[440px] aspect-square flex items-center justify-center pointer-events-none mt-2 border border-white/10">
+          <!-- Corner Technical Brackets -->
+          <div class="absolute -top-[1px] -left-[1px] w-2.5 h-2.5 border-t border-l border-sky-400"></div>
+          <div class="absolute -top-[1px] -right-[1px] w-2.5 h-2.5 border-t border-r border-sky-400"></div>
+          <div class="absolute -bottom-[1px] -left-[1px] w-2.5 h-2.5 border-b border-l border-sky-400"></div>
+          <div class="absolute -bottom-[1px] -right-[1px] w-2.5 h-2.5 border-b border-r border-sky-400"></div>
+          
+          <!-- Inner telemetry indicators -->
+          <div class="absolute inset-0 p-3.5 flex flex-col justify-between font-mono-luxury text-[7.5px] uppercase tracking-widest text-slate-500 pointer-events-none select-none">
+            <div class="flex justify-between items-center">
+              <span class="text-sky-400 font-semibold flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
+                [ 00 // OBSIDIAN MASTER ]
+              </span>
+              <span class="text-slate-400">+ 45.384° N · 14.120° E</span>
+            </div>
+            <div class="flex justify-between items-center text-slate-500">
+              <span>SCALE: 1:1 ANATOMIC CUT</span>
+              <span class="text-slate-400">[ 360° VOLUMETRIC ]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column (7 Cols): Specifications Accordion Matrix -->
+      <div class="md:col-span-7 flex flex-col justify-center">
+        
+        <!-- Header Strip -->
+        <div class="flex items-center justify-between pb-3 border-b border-white/[0.08] mb-5 font-mono-luxury text-[9px] text-slate-400 uppercase tracking-[0.2em]">
+          <span>SPECIFICATION PROTOCOLS & INQUIRIES</span>
+          <span class="text-slate-500">[ 05 ENTRIES // INDEXED ]</span>
+        </div>
+
+        <!-- Accordion Container -->
+        <div class="space-y-3 font-mono-luxury">
+          
+          <!-- Accordion 01 -->
+          <div class="faq-accordion-item open" data-faq-index="1">
+            <div class="faq-accordion-header">
+              <div class="flex items-center gap-3">
+                <span class="text-sky-400 font-bold text-[10.5px]">01</span>
+                <span class="text-xs sm:text-[13px] font-bold text-white tracking-wider font-heading uppercase">
+                  HOW DO I CHOOSE THE RIGHT SIZE?
+                </span>
+              </div>
+              <i data-lucide="plus" class="faq-accordion-chevron w-4 h-4 text-slate-400"></i>
+            </div>
+            <div class="faq-accordion-content">
+              <p class="text-[9.5px] text-slate-300 leading-relaxed pt-2.5 border-t border-white/[0.06]">
+                Take all our items to normal reality according to your body measurements before ordering. All pieces are tailored with an architectural drop-shoulder cut designed for fluid layering. We recommend selecting your true size for the intended contemporary drape, or sizing down for an aerodynamic technical fit. Consult our calibrated biometric sizing matrix for detailed chest, sleeve, and hem metrics.
+              </p>
+            </div>
+          </div>
+
+          <!-- Accordion 02 -->
+          <div class="faq-accordion-item" data-faq-index="2">
+            <div class="faq-accordion-header">
+              <div class="flex items-center gap-3">
+                <span class="text-white font-bold text-[10.5px]">02</span>
+                <span class="text-xs sm:text-[13px] font-bold text-white tracking-wider font-heading uppercase">
+                  WHAT MATERIALS ARE USED IN THE JACKET?
+                </span>
+              </div>
+              <i data-lucide="plus" class="faq-accordion-chevron w-4 h-4 text-slate-400"></i>
+            </div>
+            <div class="faq-accordion-content">
+              <p class="text-[9.5px] text-slate-300 leading-relaxed pt-2.5 border-t border-white/[0.06]">
+                Engineered from a 4-tier composite lamination: Japanese high-density DWR Ripstop exterior, sub-micron breathable micro-porous membrane (28,000mm hydrostatic head / 20,000 g/m² breathability), space-grade Aerogel Matrix V-9 synthetic baffles (-25°C arctic rating), and titanium-infused radiant heat-reflective interior lining.
+              </p>
+            </div>
+          </div>
+
+          <!-- Accordion 03 -->
+          <div class="faq-accordion-item" data-faq-index="3">
+            <div class="faq-accordion-header">
+              <div class="flex items-center gap-3">
+                <span class="text-purple-400 font-bold text-[10.5px]">03</span>
+                <span class="text-xs sm:text-[13px] font-bold text-white tracking-wider font-heading uppercase">
+                  HOW SHOULD I CARE FOR MY JACKET?
+                </span>
+              </div>
+              <i data-lucide="plus" class="faq-accordion-chevron w-4 h-4 text-slate-400"></i>
+            </div>
+            <div class="faq-accordion-content">
+              <p class="text-[9.5px] text-slate-300 leading-relaxed pt-2.5 border-t border-white/[0.06]">
+                Machine wash on delicate cold cycle (30°C / 86°F) with technical outer-wear detergent. Do not bleach or use fabric softeners. Tumble dry on low heat for 20 minutes to reactivate the hydrophobic DWR surface tension, or line dry away from direct sunlight. Never dry clean or iron.
+              </p>
+            </div>
+          </div>
+
+          <!-- Accordion 04 -->
+          <div class="faq-accordion-item" data-faq-index="4">
+            <div class="faq-accordion-header">
+              <div class="flex items-center gap-3">
+                <span class="text-slate-300 font-bold text-[10.5px]">04</span>
+                <span class="text-xs sm:text-[13px] font-bold text-white tracking-wider font-heading uppercase">
+                  DO YOU SHIP INTERNATIONALLY?
+                </span>
+              </div>
+              <i data-lucide="plus" class="faq-accordion-chevron w-4 h-4 text-slate-400"></i>
+            </div>
+            <div class="faq-accordion-content">
+              <p class="text-[9.5px] text-slate-300 leading-relaxed pt-2.5 border-t border-white/[0.06]">
+                Yes. Complimentary priority global dispatch via DHL Express Carbon-Neutral with signature delivery. Domestic transit: 1–2 business days. International transit: 3–5 business days. Each piece is dispatched inside a sealed climate-controlled archival flight case with individual cryptographic NFC serialization.
+              </p>
+            </div>
+          </div>
+
+          <!-- Accordion 05 -->
+          <div class="faq-accordion-item" data-faq-index="5">
+            <div class="faq-accordion-header">
+              <div class="flex items-center gap-3">
+                <span class="text-emerald-400 font-bold text-[10.5px]">05</span>
+                <span class="text-xs sm:text-[13px] font-bold text-white tracking-wider font-heading uppercase">
+                  CAN I RETURN OR EXCHANGE MY ORDER?
+                </span>
+              </div>
+              <i data-lucide="plus" class="faq-accordion-chevron w-4 h-4 text-slate-400"></i>
+            </div>
+            <div class="faq-accordion-content">
+              <p class="text-[9.5px] text-slate-300 leading-relaxed pt-2.5 border-t border-white/[0.06]">
+                We offer a 14-day complimentary trial period from the delivery confirmation date. Items must remain unwashed, unworn, and accompanied by the original tactical garment case, serialized authentication certificate, and untampered cryptographic security seals.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Private VIP Atelier Dispatch Banner -->
+    <div class="w-full mt-14 pt-10 border-t border-white/[0.08]">
+      <div class="luxury-bracket p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 bg-white/[0.02]">
+        <div class="space-y-1 text-center md:text-left">
+          <div class="font-mono-luxury text-[8.5px] text-sky-400 uppercase tracking-[0.25em]">PRIVATE ATELIER DISPATCH</div>
+          <h3 class="font-heading text-base sm:text-lg font-bold uppercase text-white tracking-wide">RECEIVE 2026 CAPSULE ARCHIVE DROPS</h3>
+          <p class="font-mono-luxury text-[8.5px] text-slate-400">Exclusive serial allocations, fabric provenance reports, and private salon invites.</p>
+        </div>
+        <form class="flex w-full md:w-auto max-w-md items-center gap-2 font-mono-luxury text-[9.5px]" onsubmit="event.preventDefault(); alert('Subscribed to Atelier Dispatch.');">
+          <input type="email" placeholder="ENTER CLIENT DISPATCH EMAIL..." required class="bg-black/60 border border-white/15 px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 w-full sm:w-64 transition-colors">
+          <button type="submit" class="btn-luxury-action py-2 px-5 whitespace-nowrap">JOIN</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Grand Atelier Footer -->
+    <footer class="w-full pt-10 pb-4 border-t border-white/[0.06] flex flex-col justify-between gap-8 font-mono-luxury text-[9px] text-slate-500 uppercase tracking-[0.16em] mt-8">
+      <!-- Top Row -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="flex items-center space-x-3">
+          <div class="w-7 h-7 flex items-center justify-center border border-white/20">
+            <span class="font-brand text-[11px] font-bold text-white">Æ</span>
+          </div>
+          <span class="font-brand font-bold text-xs tracking-[0.3em] text-white">AETHER</span>
+          <span class="text-slate-600">// ATELIER 2026</span>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-6 text-slate-400 text-[8.5px]">
+          <a href="#hero" class="hover:text-white transition-colors">COLLECTION</a>
+          <a href="#details" class="hover:text-white transition-colors">ENGINEERING</a>
+          <a href="#collections" class="hover:text-white transition-colors">CATALOG</a>
+          <a href="#technology" class="hover:text-white transition-colors">TECHNOLOGY</a>
+          <a href="#faq-specs" class="hover:text-white transition-colors">SPECIFICATIONS</a>
+        </div>
+        <button id="btn-back-to-top" class="flex items-center gap-2 text-white hover:text-sky-400 transition-colors cursor-pointer py-1.5 px-3 border border-white/10 hover:border-sky-400/50 text-[8.5px]">
+          <span>BACK TO TOP</span>
+          <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 border-t border-white/[0.04] text-[8px] text-slate-500">
+        <div>© 2026 AETHER ARCHITECTURAL APPAREL. INDIVIDUALLY NUMBERED · ALL RIGHTS RESERVED.</div>
+        <div class="flex items-center gap-4">
+          <span>ISO 811 // JIS L 1099 CERTIFIED</span>
+          <span>ZERO COMPROMISE</span>
+        </div>
+      </div>
+    </footer>
+
+  </section>
+
+  <!-- Scripts -->
+  <script src="js/jacket3d.js?v=1.3"></script>
+  <script src="js/collections3d.js"></script>
+  <script src="js/app.js?v=1.4"></script>
+</body>
+</html>

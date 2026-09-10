@@ -1,0 +1,16 @@
+﻿<svg xmlns=http://www.w3.org/2000/svg viewBox=0 0 64 64 width=64 height=64>
+  <defs>
+    <linearGradient id=bgGrad x1=0% y1=0% x2=100% y2=100%>
+      <stop offset=0% stop-color=#14171f />
+      <stop offset=100% stop-color=#070709 />
+    </linearGradient>
+    <linearGradient id=borderGrad x1=0% y1=0% x2=100% y2=100%>
+      <stop offset=0% stop-color=rgba(56, 189, 248, 0.6) />
+      <stop offset=100% stop-color=rgba(234, 88, 12, 0.4) />
+    </linearGradient>
+  </defs>
+  <rect x=2 y=2 width=60 height=60 rx=14 fill=url(#bgGrad) stroke=rgba(255, 255, 255, 0.16) stroke-width=1.8 />
+  <rect x=4 y=4 width=56 height=56 rx=12 fill=none stroke=url(#borderGrad) stroke-width=1 stroke-opacity=0.5 />
+  <text x=32 y=44 font-family='Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif font-size=34 font-weight=800 fill=#f8fafc text-anchor=middle letter-spacing=-1>Æ</text>
+  <circle cx=49 cy=17 r=3 fill=#ea580c />
+</svg>

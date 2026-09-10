@@ -1,0 +1,22 @@
+{
+  "method": "aligned original green front/back relief",
+  "front_bbox": [
+    8,
+    77,
+    391,
+    483
+  ],
+  "back_bbox": [
+    0,
+    50,
+    380,
+    439
+  ],
+  "triangles": 52352,
+  "dimensions": [
+    2.1551020408163266,
+    0.43823934877716303,
+    2.284183673469388
+  ],
+  "depth_height_ratio": 0.1918581915575697
+}
