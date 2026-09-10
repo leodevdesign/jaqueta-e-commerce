@@ -219,27 +219,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ========================================================
-     BRAND PRELOADER CONTROLLER (Stroke -> Left-to-Right Fill)
+     BRAND PRELOADER CONTROLLER (Stroke -> Left-to-Right Fill -> Logo Flight & Curtain Reveal)
      ======================================================== */
   const preloader = document.getElementById('site-preloader');
-  const wipeRect = document.getElementById('aetherWipeRect');
-  const laserLine = document.getElementById('preloader-laser-line');
-  const fillBar = document.getElementById('preloader-fill-bar');
-  const pctText = document.getElementById('preloader-pct');
-  const statusMsg = document.getElementById('preloader-status-msg');
+  const curtain = document.getElementById('preloader-curtain');
+  const strokeWrapper = document.getElementById('preloader-text-wrapper');
+  const wipeRect = document.getElementById('strokeTextWipe');
 
-  if (preloader && wipeRect && fillBar && pctText) {
+  if (preloader && wipeRect) {
     let progress = 0;
-    const duration = 1600; // ms for the left-to-right fill wipe
-    const startTime = performance.now() + 500; // start wipe after stroke outline has drawn in
-
-    const statusPhases = [
-      { threshold: 0.20, text: 'CALIBRATING TITANIUM MATRIX...' },
-      { threshold: 0.45, text: 'INITIALIZING 4-TIER STRATA...' },
-      { threshold: 0.70, text: 'SYNTHESIZING AEROGEL CORE...' },
-      { threshold: 0.90, text: 'ENGAGING TELEMETRY DOCK...' },
-      { threshold: 1.00, text: 'SYSTEM ONLINE // ARCHIVE READY' }
-    ];
+    const duration = 1350; // ms for the left-to-right fill wipe
+    const startTime = performance.now() + 400; // starts as stroke outline completes
 
     function animatePreloader(now) {
       if (now < startTime) {
@@ -250,47 +240,93 @@ document.addEventListener('DOMContentLoaded', () => {
       const elapsed = now - startTime;
       progress = Math.min(elapsed / duration, 1.0);
 
-      // Smooth cubic ease-out
+      // Smooth ease-out
       const eased = 1 - Math.pow(1 - progress, 2.2);
-      const pctValue = Math.floor(eased * 100);
-
       wipeRect.setAttribute('width', `${(eased * 100).toFixed(2)}%`);
-      fillBar.style.width = `${(eased * 100).toFixed(2)}%`;
-      pctText.textContent = `${pctValue.toString().padStart(2, '0')}%`;
-
-      if (laserLine) {
-        laserLine.style.left = `${(eased * 100).toFixed(2)}%`;
-        laserLine.style.opacity = progress > 0.02 && progress < 0.98 ? '1' : '0';
-      }
-
-      for (const phase of statusPhases) {
-        if (progress <= phase.threshold) {
-          if (statusMsg) statusMsg.textContent = phase.text;
-          break;
-        }
-      }
 
       if (progress < 1.0) {
         requestAnimationFrame(animatePreloader);
       } else {
-        // 100% Complete
         wipeRect.setAttribute('width', '100%');
-        fillBar.style.width = '100%';
-        pctText.textContent = '100%';
-        if (statusMsg) statusMsg.textContent = 'SYSTEM ONLINE // ARCHIVE READY';
-        if (laserLine) laserLine.style.opacity = '0';
 
+        // Trigger the luxury transition: Text travels to header logo & black curtain rises
         setTimeout(() => {
-          preloader.classList.add('loaded');
-          playLuxuryClick(1800);
-          setTimeout(() => {
-            playLuxuryClick(2400);
-          }, 120);
+          triggerPreloaderExit();
+        }, 200);
+      }
+    }
 
-          setTimeout(() => {
+    function triggerPreloaderExit() {
+      const headerTarget = document.getElementById('header-brand-name') || document.querySelector('#site-header .font-brand');
+      
+      let deltaX = -window.innerWidth * 0.38;
+      let deltaY = -window.innerHeight * 0.44;
+      let targetScale = 0.16;
+
+      if (headerTarget && strokeWrapper) {
+        const hRect = headerTarget.getBoundingClientRect();
+        const sRect = strokeWrapper.getBoundingClientRect();
+        
+        const sCenterX = sRect.left + sRect.width / 2;
+        const sCenterY = sRect.top + sRect.height / 2;
+        const hCenterX = hRect.left + hRect.width / 2;
+        const hCenterY = hRect.top + hRect.height / 2;
+
+        deltaX = hCenterX - sCenterX;
+        deltaY = hCenterY - sCenterY;
+        
+        targetScale = Math.max(0.12, Math.min(0.24, (hRect.height * 2.2) / sRect.height));
+      }
+
+      if (window.gsap) {
+        const exitTl = gsap.timeline({
+          onComplete: () => {
+            preloader.classList.add('loaded');
             preloader.style.display = 'none';
-          }, 950);
-        }, 350);
+          }
+        });
+
+        // 1. Text moves and scales down to header logo position
+        exitTl.to(strokeWrapper, {
+          x: deltaX,
+          y: deltaY,
+          scale: targetScale,
+          duration: 0.85,
+          ease: 'power3.inOut'
+        }, 0);
+
+        // Smoothly fade out text right as it docks onto header logo
+        exitTl.to(strokeWrapper, {
+          opacity: 0,
+          duration: 0.22,
+          ease: 'power2.in'
+        }, 0.63);
+
+        // 2. Black curtain slides UP off the screen, revealing the site from bottom to top
+        if (curtain) {
+          exitTl.to(curtain, {
+            yPercent: -100,
+            duration: 0.85,
+            ease: 'power3.inOut'
+          }, 0);
+        } else {
+          exitTl.to(preloader, {
+            yPercent: -100,
+            duration: 0.85,
+            ease: 'power3.inOut'
+          }, 0);
+        }
+
+        // Tactile arrival sound
+        setTimeout(() => {
+          playLuxuryClick(1800);
+        }, 650);
+      } else {
+        // Fallback if GSAP is unavailable
+        preloader.classList.add('loaded');
+        setTimeout(() => {
+          preloader.style.display = 'none';
+        }, 800);
       }
     }
 

@@ -76,69 +76,30 @@
   <div id="luxury-cursor-dot" class="luxury-cursor-dot" aria-hidden="true"></div>
 
   <!-- ========================================================
-       AETHER ATELIER PRELOADER (Stroke Text -> Left-to-Right Fill)
+       AETHER PRELOADER (Minimal Pure Black Stroke Text)
        ======================================================== -->
   <div id="site-preloader" class="site-preloader">
-    <div class="preloader-backdrop"></div>
-    <div class="preloader-grid"></div>
-    
-    <div class="preloader-content">
-      <!-- Top Atelier Identification -->
-      <div class="preloader-header">
-        <div class="preloader-mono-box">Æ</div>
-        <div class="preloader-header-text">
-          <span class="preloader-title">AETHER ARCHITECTURAL APPAREL</span>
-          <span class="preloader-subtitle">SYSTEM CALIBRATION // 2026 CAPSULE</span>
-        </div>
-      </div>
+    <div id="preloader-curtain" class="preloader-curtain"></div>
+    <div id="preloader-text-wrapper" class="stroke-text">
+      <svg class="stroke-text__svg" viewBox="0 0 1000 200" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <clipPath id="strokeTextClip">
+            <rect id="strokeTextWipe" x="0" y="0" width="0%" height="100%" />
+          </clipPath>
+        </defs>
 
-      <!-- Main Stroke & Fill Typography -->
-      <div class="preloader-brand-wrapper">
-        <svg class="preloader-svg" viewBox="0 0 800 160" preserveAspectRatio="xMidYMid meet">
-          <defs>
-            <linearGradient id="aetherFillGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#ffffff" />
-              <stop offset="70%" stop-color="#f1f5f9" />
-              <stop offset="100%" stop-color="#e0f2fe" />
-            </linearGradient>
+        <!-- Base Stroke (Outlined Text) -->
+        <text x="50%" y="62%" text-anchor="middle" class="stroke-text__stroke">
+          AETHER
+        </text>
 
-            <clipPath id="aetherWipeClip">
-              <rect id="aetherWipeRect" x="0" y="0" width="0%" height="100%" />
-            </clipPath>
-          </defs>
-
-          <!-- Layer 1: High-Precision Stroke Outline -->
-          <text x="50%" y="68%" text-anchor="middle" class="preloader-text-stroke">
+        <!-- Filled Text (Wiped from Left to Right) -->
+        <g clip-path="url(#strokeTextClip)">
+          <text x="50%" y="62%" text-anchor="middle" class="stroke-text__fill">
             AETHER
           </text>
-
-          <!-- Layer 2: Solid Luminous Fill (Clipped by progressive Left-to-Right rectangle) -->
-          <g clip-path="url(#aetherWipeClip)">
-            <text x="50%" y="68%" text-anchor="middle" class="preloader-text-fill">
-              AETHER
-            </text>
-          </g>
-        </svg>
-
-        <!-- Laser Leading Edge -->
-        <div id="preloader-laser-line" class="preloader-laser-line"></div>
-      </div>
-
-      <!-- Bottom Progress & Telemetry -->
-      <div class="preloader-footer">
-        <div class="preloader-status-bar">
-          <span id="preloader-status-msg" class="preloader-status-msg">SYNTHESIZING TITANIUM MEMBRANE...</span>
-          <span id="preloader-pct" class="preloader-pct">00%</span>
-        </div>
-        <div class="preloader-track">
-          <div id="preloader-fill-bar" class="preloader-fill-bar"></div>
-        </div>
-        <div class="preloader-specs-strip">
-          <span>SPEC_01 // TITANIUM MESH</span>
-          <span>LAT 45.4642° N</span>
-          <span>ISO 811 READY</span>
-        </div>
-      </div>
+        </g>
+      </svg>
     </div>
   </div>
 
@@ -161,7 +122,7 @@
         <span class="font-brand text-[13px] font-bold tracking-tighter text-white">Æ</span>
       </div>
       <div>
-        <div class="font-brand font-bold text-sm tracking-[0.35em] text-white uppercase group-hover:text-slate-300 transition-colors">
+        <div id="header-brand-name" class="font-brand font-bold text-sm tracking-[0.35em] text-white uppercase group-hover:text-slate-300 transition-colors">
           AETHER
         </div>
         <div class="text-[8.5px] font-mono-luxury tracking-[0.25em] text-slate-400 uppercase -mt-0.5">
