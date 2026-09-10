@@ -72,7 +72,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const handleScroll = () => {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
-    const progress = Math.min(1.0, Math.max(0.0, scrollY / (windowHeight * 0.9)));
+    const isMobile = window.innerWidth <= 768;
+
+    // Progress between Hero and Section 2
+    const detailsSec = document.getElementById('section-details');
+    let progress = 0;
+    if (detailsSec) {
+      const detailsTop = detailsSec.getBoundingClientRect().top;
+      progress = Math.min(1.0, Math.max(0.0, (windowHeight - detailsTop) / windowHeight));
+    } else {
+      progress = Math.min(1.0, Math.max(0.0, scrollY / (windowHeight * 0.9)));
+    }
 
     if (jacketEngine) {
       jacketEngine.setScrollProgress(progress);
@@ -81,18 +91,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvasContainer = document.getElementById('canvas3d-container');
     const heroContent = document.getElementById('hero-content');
     const heroFooter = document.getElementById('hero-footer');
+    const scrollPrompt = document.getElementById('hero-scroll-prompt');
 
-    if (heroContent) {
-      const heroOpacity = Math.max(0, 1 - progress * 1.5);
-      heroContent.style.opacity = heroOpacity;
-      heroContent.style.transform = `translateY(${-progress * 40}px)`;
-      heroContent.style.pointerEvents = heroOpacity > 0.1 ? 'auto' : 'none';
-    }
+    if (isMobile) {
+      // Mobile choreography:
+      // At scrollY === 0: Pure jacket. heroContent is hidden.
+      // When scrolling down (scrollY 20px to 140px): heroContent fades in smoothly with frosted glass over the jacket.
+      const mobileHeroFade = Math.min(1.0, Math.max(0.0, (scrollY - 20) / 120));
+      if (heroContent) {
+        heroContent.style.opacity = mobileHeroFade;
+        heroContent.style.transform = `translateY(${(1.0 - mobileHeroFade) * 24}px)`;
+        heroContent.style.pointerEvents = mobileHeroFade > 0.2 ? 'auto' : 'none';
+      }
 
-    if (heroFooter) {
-      const footerOpacity = Math.max(0, 1 - progress * 1.8);
-      heroFooter.style.opacity = footerOpacity;
-      heroFooter.style.pointerEvents = footerOpacity > 0.1 ? 'auto' : 'none';
+      if (heroFooter) {
+        const mobileFooterFade = Math.min(1.0, Math.max(0.0, (scrollY - 60) / 120));
+        heroFooter.style.opacity = mobileFooterFade;
+        heroFooter.style.transform = `translateY(${(1.0 - mobileFooterFade) * 16}px)`;
+        heroFooter.style.pointerEvents = mobileFooterFade > 0.2 ? 'auto' : 'none';
+      }
+
+      if (scrollPrompt) {
+        const promptFade = Math.max(0.0, 1.0 - scrollY / 60);
+        scrollPrompt.style.opacity = promptFade;
+        scrollPrompt.style.pointerEvents = promptFade > 0.1 ? 'auto' : 'none';
+      }
+    } else {
+      // Desktop choreography:
+      if (heroContent) {
+        const heroOpacity = Math.max(0, 1 - progress * 1.5);
+        heroContent.style.opacity = heroOpacity;
+        heroContent.style.transform = `translateY(${-progress * 40}px)`;
+        heroContent.style.pointerEvents = heroOpacity > 0.1 ? 'auto' : 'none';
+      }
+
+      if (heroFooter) {
+        const footerOpacity = Math.max(0, 1 - progress * 1.8);
+        heroFooter.style.opacity = footerOpacity;
+        heroFooter.style.pointerEvents = footerOpacity > 0.1 ? 'auto' : 'none';
+      }
     }
 
     // Section 5: Transition and Anchor the 3D Jacket directly inside the stage moldura
@@ -132,16 +169,24 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('resize', handleScroll, { passive: true });
   handleScroll();
 
   // GSAP Initial Entrance Animation
   if (window.gsap) {
+    const isMobile = window.innerWidth <= 768;
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.from('#site-header', { y: -40, opacity: 0, duration: 1.1 })
-      .from('.hud-left', { x: -50, opacity: 0, duration: 1.0 }, '-=0.7')
-      .from('.hud-right', { x: 50, opacity: 0, duration: 1.0 }, '-=0.8')
-      .from('#hero-footer', { opacity: 0, duration: 1.0 }, '-=0.7')
-      .from('#canvas3d-container', { scale: 0.92, opacity: 0, duration: 1.4 }, '-=1.1');
+    if (!isMobile) {
+      tl.from('#site-header', { y: -40, opacity: 0, duration: 1.1 })
+        .from('.hud-left', { x: -50, opacity: 0, duration: 1.0 }, '-=0.7')
+        .from('.hud-right', { x: 50, opacity: 0, duration: 1.0 }, '-=0.8')
+        .from('#hero-footer', { opacity: 0, duration: 1.0 }, '-=0.7')
+        .from('#canvas3d-container', { scale: 0.92, opacity: 0, duration: 1.4 }, '-=1.1');
+    } else {
+      tl.from('#site-header', { y: -40, opacity: 0, duration: 1.1 })
+        .from('#canvas3d-container', { scale: 0.92, opacity: 0, duration: 1.4 }, '-=0.8')
+        .from('#hero-scroll-prompt', { y: 15, opacity: 0, duration: 0.8 }, '-=0.4');
+    }
   }
 
   // Section 4: Technology Exploded Layer Strata Interactivity

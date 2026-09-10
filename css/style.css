@@ -752,6 +752,71 @@ body:has(#site-preloader:not(.loaded)) .luxury-cursor-glow {
   }
 }
 
+/* ========================================================
+   MOBILE RESPONSIVENESS & SCROLL CHOREOGRAPHY (SECTION 1 HERO)
+   ======================================================== */
+@media (max-width: 768px) {
+  #hero {
+    min-height: 165vh;
+    height: auto;
+    overflow: visible;
+  }
 
+  #hero-content {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(30px);
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
+  .hud-left,
+  .hud-right {
+    max-width: 100% !important;
+    width: 100% !important;
+    background: rgba(10, 12, 16, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    padding: 1.5rem !important;
+    border-radius: 0.75rem !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55) !important;
+  }
 
+  .hud-left .luxury-bracket,
+  .hud-right .luxury-bracket {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .hud-left .luxury-bracket::before,
+  .hud-left .luxury-bracket::after,
+  .hud-right .luxury-bracket::before,
+  .hud-right .luxury-bracket::after {
+    display: none !important;
+  }
+
+  #hero-footer {
+    opacity: 0;
+    pointer-events: none;
+    margin-top: 1rem;
+    background: rgba(10, 12, 16, 0.80) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 0.75rem !important;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    width: calc(100% - 2.5rem);
+    padding: 1.25rem !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55) !important;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
