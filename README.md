@@ -124,10 +124,9 @@ jaqueta-e-commerce/
 
 ## 🚀 Como Executar Localmente
 
-### Pré-requisitos
-* [Node.js](https://nodejs.org/) instalado na máquina (versão 16 ou superior).
+> **Nota técnica**: Por utilizar renderização 3D WebGL e carregamento de modelos `.glb` externos, o projeto requer a execução através de um servidor local para evitar bloqueios de segurança do navegador (política de CORS com protocolo `file:///`).
 
-### Passo a passo
+### Opção 1: Servidor Node.js (Recomendado)
 
 1. **Clone o repositório:**
    ```bash
@@ -135,15 +134,34 @@ jaqueta-e-commerce/
    cd jaqueta-e-commerce
    ```
 
-2. **Inicie o servidor de desenvolvimento:**
+2. **Inicie o servidor:**
    ```bash
    node serve.js
    ```
 
 3. **Acesse no seu navegador:**
    ```text
-   http://127.0.0.1:8088/
+   http://localhost:3000
    ```
+
+---
+
+### Opção 2: Extensão Live Server (VS Code)
+
+Se preferir não utilizar o terminal:
+1. Abra a pasta do projeto no **VS Code**.
+2. Instale a extensão **Live Server** (caso ainda não possua).
+3. Clique com o botão direito sobre o arquivo `index.html` e selecione **"Open with Live Server"**.
+
+---
+
+### Opção 3: Via Python
+
+```bash
+# Na raiz da pasta do projeto:
+python -m http.server 3000
+```
+Acesse em: `http://localhost:3000`
 
 ---
 
